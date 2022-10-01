@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Rajshahi</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="rj.css" rel="stylesheet">
+    <link rel="stylesheet" href="style_sb.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
+
+    <style>
+tr{
+  display:none ;
+}
+
+.zi{
+  z-index: 5 ;
+}
+
+    </style>
+  </head>
+  <body>
+  
+    <div class="wrapper zi">
+      <div class="search-input zi">
+        <a href="" target="_blank" hidden></a>
+        <input type="text" placeholder="Type to search..">
+        <div class="autocom-box">
+          <!-- here list are inserted from javascript -->
+        </div>
+        <div class="icon"><i class="fas fa-search"></i></div>
+      </div>
+    </div>
+
+<table id="jsn"> </table>
+
+<script>
+function creatTableFrmObjArr(objs,headers,tblId){
+let myTable = document.querySelector(`#${tblId}`);
+    let table = document.createElement('table');
+    let headerRow = document.createElement('tr');
+    headers.forEach(headerText => {
+        let header = document.createElement('th');
+        let textNode = document.createTextNode(headerText);
+        header.appendChild(textNode);
+        headerRow.appendChild(header);
+    });
+    table.appendChild(headerRow);
+
+   objs.forEach(obj => {
+        let row = document.createElement('tr');
+        Object.values(obj).forEach(text => {
+            let cell = document.createElement('td');
+            let textNode = document.createTextNode(text);
+            cell.appendChild(textNode);
+            row.appendChild(cell);
+        })
+        table.appendChild(row);
+    });
+    myTable.appendChild(table);
+
+}
+
+headers=['Place','Latitude','Longitude'] ;
+async function getDt(){
+const objcts=await fetch('ltn.json').then((response) => response.json()) ;
+ const data =  objcts ;
+creatTableFrmObjArr(data,headers,'jsn');
+}
+getDt() ;
+
+</script>
+
+<!-- <script> -->
+<!--    -->
+<!--     const tble = document.getElementById('jsn') ; -->
+<!--   async function getFile(){ -->
+<!--   const fj=await fetch('ltn.json').then((response) => response.json()) ; -->
+<!--     console.log(fj) ; -->
+<!--       for(let ii in fj){ -->
+<!--       tble.innerHTML=tble.innerHTML+'<tr>'; -->
+<!--       for(let i in fj[ii]){ -->
+<!--         tble.innerHTML=tble.innerHTML+`<td>${fj[i][ii]}</td>` ; -->
+<!--       } -->
+<!--       tble.innerHTML=tble.innerHTML+'</tr>'; -->
+<!--       } -->
+<!--     } -->
+<!--   getFile() ; -->
+<!-- </script> -->
+
+
+<!-- <table id="tbl" class="table table-bordered table-hover table-condensed"> -->
+<!-- <thead><tr><th title="Field #1">id</th> -->
+<!-- <th title="Field #2">name</th> -->
+<!-- <th title="Field #3">amount</th> -->
+<!-- <th title="Field #4">Remark</th> -->
+<!-- </tr></thead> -->
+<!-- <tbody><tr> -->
+<!-- <td align="right">1</td> -->
+<!-- <td>Johnson, Smith, and Jones Co.</td> -->
+<!-- <td align="right">345.33</td> -->
+<!-- <td>Pays on time</td> -->
+<!-- </tr> -->
+<!-- <tr> -->
+<!-- <td align="right">2</td> -->
+<!-- <td>Sam &quot;Mad Dog&quot; Smith</td> -->
+<!-- <td align="right">993.44</td> -->
+<!-- <td> </td> -->
+<!-- </tr> -->
+<!-- <tr> -->
+<!-- <td align="right">3</td> -->
+<!-- <td>Barney &amp; Company</td> -->
+<!-- <td align="right">0</td> -->
+<!-- <td>Great to work with<br/>and always pays with cash.</td> -->
+<!-- </tr> -->
+<!-- <tr> -->
+<!-- <td align="right">4</td> -->
+<!-- <td>Johnson&#39;s Automotive</td> -->
+<!-- <td align="right">2344</td> -->
+<!-- <td> </td> -->
+<!-- </tr> -->
+<!-- </tbody></table> -->
+<!---->
+
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+
+
+<script>
+
+
+  function srch(pattern,list){
+  const options = {
+   isCaseSensitive: false,
+   includeScore: true,
+   shouldSort: true,
+    // includeMatches: true,
+  // findAllMatches: false,
+  // minMatchCharLength: 1,
+   // location: 0,
+  // threshold: 0.6,
+  // distance: 100,
+  // useExtendedSearch: false,
+  // ignoreLocation: false,
+  // ignoreFieldNorm: false,
+  // fieldNormWeight: 1,
+  keys: [
+    "place",
+  ]
+};
+const fuse = new Fuse(list, options);
+return fuse.search(pattern)
+}
+
+</script>
+
+
+<script>
+
+  async function getSearched(str){
+  const fj=await fetch('ltn.json').then((response) => response.json()) ;
+  const sr=srch(str,fj) ;
+      return sr ;
+    }
+</script>
+
+     <script src="./spt.js"></script> 
+
+
+
+  </body>
+</html>

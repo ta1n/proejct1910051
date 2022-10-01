@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fuzzy Search Box</title>
+    <link rel="stylesheet" href="style_sb.css">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  </head>
+
+  <body>
+
+    <div class="wrapper">
+      <div class="search-input">
+        <a href="" target="_blank" hidden></a>
+        <input type="text" placeholder="Type to search..">
+        <div class="autocom-box">
+          <!-- here list are inserted from javascript -->
+        </div>
+        <div class="icon"><i class="fas fa-search"></i></div>
+      </div>
+    </div>
+
+
+
+	   <!-- <div class="products" id="tbl"> this is where we arrive </div> -->
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+
+
+<script>
+
+
+  function srch(pattern,list){
+  const options = {
+   isCaseSensitive: false,
+   includeScore: true,
+   shouldSort: true,
+    // includeMatches: true,
+  // findAllMatches: false,
+  // minMatchCharLength: 1,
+   // location: 0,
+  // threshold: 0.6,
+  // distance: 100,
+  // useExtendedSearch: false,
+  // ignoreLocation: false,
+  // ignoreFieldNorm: false,
+  // fieldNormWeight: 1,
+  keys: [
+    "place",
+  ]
+};
+const fuse = new Fuse(list, options);
+return fuse.search(pattern)
+}
+
+</script>
+
+
+<script>
+
+  async function getSearched(str){
+  const fj=await fetch('ltn.json').then((response) => response.json()) ;
+  const sr=srch(str,fj) ;
+      return sr ;
+    }
+</script>
+
+     <script src="./spt.js"></script> 
+
+  </body>
+</html>

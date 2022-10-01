@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Location</title>
+
+
+    <style>
+    #map{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height:400px ;
+      width:80% ;
+      border: solid black;
+    }
+
+    </style>
+  </head>
+  <body>
+    <h1>Where am I located now ?</h1>
+    <h2>Cick the button below to know</h2>
+
+    <button id="lct">Locate Me!</button>
+    <p>
+      latitude: <span id="latitude"></span>&deg;<br />
+      longitude: <span id="longitude"></span>&deg;
+    </p>
+
+
+    <h1 id="hd" style="display:none">Now, See your location in map!</h1>
+    <div id="map"></div>
+
+    <script>
+    function disp(){
+      const el=document.getElementById('hd') ;
+      el.style.display='' ;
+    }
+
+    const button = document.getElementById("lct"); 
+    button.addEventListener("click", async (event) => {
+
+      if ("geolocation" in navigator) { 
+        console.log("geolocation available"); 
+        navigator.geolocation.getCurrentPosition(async (position) => { 
+          lat = position.coords.latitude; 
+          lon = position.coords.longitude; 
+          disp() ;
+          imp(lat,lon) ;
+          document.getElementById("latitude").textContent = lat; 
+          document.getElementById("longitude").textContent = lon; 
+        }); 
+      } else { 
+        console.log("geolocation not available"); 
+      } 
+    }) ;
+
+
+    </script>
+
+
+    <!--         // const data = { lat, lon, mood }; -->
+    <!--         // const options = { -->
+    <!--         //   method: "POST", -->
+    <!--         //   headers: { -->
+    <!--         //     "Content-Type": "application/json", -->
+    <!--         //   }, -->
+    <!--         //   body: JSON.stringify(data), -->
+    <!--         // }; -->
+    <!--         // const response = await fetch("/api", options); -->
+    <!--         // const json = await response.json(); -->
+    <!--         // console.log(json); -->
+    <!--       }); -->
+    <!--     } -->
+    <!---->
+    <!--     </script> -->
+    <!---->
+    <!---->
+
+    <script>
+
+
+    function imp(lat,lon){
+
+      ltLng={lat:lat,lng:lon} ;
+      // Create the script tag, set the appropriate attributes
+      let script = document.createElement('script');
+
+      script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDjI9Hxp1XvG2JHK-S95Xxvg3btXWN7ES0&callback=initMap&libraries=&v=weekly";
+      script.async = true;
+
+      // Attach your callback function to the `window` object
+      window.initMap = function() {
+        // JS API is loaded and available
+        map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 17,
+          center: ltLng,
+        });
+        const image = "./m.svg";
+        const lctmarker = new google.maps.Marker({
+          position: ltLng,
+          map,
+          icon: image,
+        });
+      };
+      // Append the 'script' element to 'head'
+      document.head.appendChild(script);
+
+    }
+
+    </script>
+
+
+
+  </body>
+</html>
