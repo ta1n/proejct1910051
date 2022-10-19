@@ -13,13 +13,61 @@
 body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 .w3-bar-block .w3-bar-item {padding:20px}
 
+  </style>
+
+    <style>
+    .cntnr{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .dv{
+  width: 90%; 
+  margin: auto; 
+  text-align: center;
+  
+  /* Optional Styling */
+  padding: 20px;
+  border-style: solid;
+  border-color: #B6C7D6;
+  border-radius: 20px;
+  background-color: #EAF0F6;
+ 
+}
+
+
+/* Styling */
+
+body {
+  margin: auto;
+  width: 100%; 
+  padding: 50px;
+  font-family: 'Lexend Deca', sans-serif; 
+  color: #2E475D;    
+}
+
+
+    .ncntr{
+      display:flex ;
+      align-items:center ;
+      justify-content: center ;
+      /* align-content: space-around ; */
+      flex-wrap:wrap ;
+      row-gap: 50px ;
+      column-gap: 50px ;
+      padding:20px ;
+      margin:10px ;
+      flex-flow:column ;
+      
+    }
+
     </style>
   </head>
   <body>
     <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
       <a href="javascript:void(0)" onclick="w3_close()"
-                                   class="w3-bar-item w3-button">CLOSE THIS MENU</a>
-  <a href="index.html" onclick="w3_close()" class="w3-bar-item w3-button">HOME</a>
+        class="w3-bar-item w3-button">CLOSE THIS MENU</a>
+      <a href="index.html" onclick="w3_close()" class="w3-bar-item w3-button">HOME</a>
       <a href="#" onclick="w3_close()" class="w3-bar-item w3-button">Ask</a>
       <a href="#" onclick="w3_close()" class="w3-bar-item w3-button">About</a>
     </nav>
@@ -39,19 +87,36 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
     <br>
 
 
-<div>
+    <div class="ncntr">
+        
+    <div>
 
-  <h1>
-  Transportation costs 
-</h1>
-
-
-  <h2>Auto Rickshaw fare</h2> 
+      <h1> Transportation costs </h1>
 
 
+      <h2>Auto Rickshaw fares</h2> 
+
+      <div id="tcntn">
+        
+      </div>
+
+        <button id="cntr_button" onclick='addFare()'>Add to fare</button>
+
+    </div>
+
+      <form  id="form" style="display:none" action="/addFare" method="POST"  autocomplete="on">
+      <fieldset>
+      <input type="text"   id="from" name="from" placeholder="From/To">
+      <input type="text"   id="to" name="to" placeholder="From/To">
+      <input type="text"   id="fare" name="fare" placeholder="Fare">
+      <input type="submit" id="btn" value="SUBMIT">
+      </fieldset>
+      </form>
+
+<div id="contr">
+  
 </div>
 
-
     <br>
     <br>
     <br>
@@ -59,32 +124,43 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 
 
 
-    <div class="w3-center">
+    <div class="ncntr">
 
       <h1 class="w3-serif">Welcome to Rajshahi !</h1>
     </div>
 
-    <div>
       <h2>About</h2>
-        a metropolitan city and a major urban, commercial and educational centre of Bangladesh. It is also the administrative seat of the eponymous division and district. Located on the north bank of the Padma River, near the Bangladesh-India border, the city has a population of over 763,580 residents. The town is surrounded by the satellite towns of Nowhata and Katakhali, which together build an urban agglomeration of about 1 million population. Modern Rajshahi lies in the ancient region of Pundravardhana. The foundation of the city dates to 1634, according to epigraphic records at the mausoleum of Sufi saint Shah Makhdum. The area hosted a Dutch settlement in the 18th century. The Rajshahi municipality was constituted during the British Raj in 1876. It was a divisional capital of the Bengal Presidency.
+    <div class="cntnr dv">
+      a metropolitan city and a major urban, commercial and educational centre of Bangladesh. It is also the administrative seat of the eponymous division and district. Located on the north bank of the Padma River, near the Bangladesh-India border, the city has a population of over 763,580 residents. The town is surrounded by the satellite towns of Nowhata and Katakhali, which together build an urban agglomeration of about 1 million population. Modern Rajshahi lies in the ancient region of Pundravardhana. The foundation of the city dates to 1634, according to epigraphic records at the mausoleum of Sufi saint Shah Makhdum. The area hosted a Dutch settlement in the 18th century. The Rajshahi municipality was constituted during the British Raj in 1876. It was a divisional capital of the Bengal Presidency.
 
-Rajshahi is a significant administrative, educational, cultural, and business centre in Bangladesh. It is a historic center of silk production. Varendra Research Museum, the oldest of its kind in Bangladesh, is located in the city. The city is home to many renowned educational institutions of Bangladesh. The head office of Rajshahi Agricultural Development Bank and Barind Multipurpose Development Authority (BMDA) is situated in the city. The Shah Makhdum Airport serves Rajshahi. 
+      Rajshahi is a significant administrative, educational, cultural, and business centre in Bangladesh. It is a historic center of silk production. Varendra Research Museum, the oldest of its kind in Bangladesh, is located in the city. The city is home to many renowned educational institutions of Bangladesh. The head office of Rajshahi Agricultural Development Bank and Barind Multipurpose Development Authority (BMDA) is situated in the city. The Shah Makhdum Airport serves Rajshahi. 
 
 
     </div>
+      <br>
+      <br>
+      <br>
+      <br>
 
     Key things in this Rajshahi 
     See below for the key interesting things in Rajshahi :
 
     Mango
 
-<div>
-  
+
+    <div cntnr dv>
+      <h3>Hardinge Bridge</h3>
+      <p>Hardinge Bridge is a steel railway truss bridge over the Padma River located at Ishwardi, Pabna and Bheramara, and Kushtia in Bangladesh. It is named after Lord Hardinge, who was the Viceroy of India from 1910 to 1916. The bridge is 1.8 km (1.1 mi) long. </p>
+      <img class="e-im" src="https://upload.wikimedia.org/wikipedia/commons/8/83/Hardinge_Bridge_11.jpg" alt="padma river"> 
+    </div>
+
+    <div>
+
       <h2>Puthia Rajbari</h2>
 
-Puthia Rajbari is a palace in Puthia Upazilla, Rajshahi in Bangladesh, built in 1895, for Rani Hemanta Kumari Debi, it is an example of Indo-Saracenic Revival architecture. The palace is sited on the Rajshahi Natore highway 30 km from the east of the town and one km south from Rajshahi Natore highway. It is currently used by Lashkarpur Degree College but is in a poor state of repair. 
+      Puthia Rajbari is a palace in Puthia Upazilla, Rajshahi in Bangladesh, built in 1895, for Rani Hemanta Kumari Debi, it is an example of Indo-Saracenic Revival architecture. The palace is sited on the Rajshahi Natore highway 30 km from the east of the town and one km south from Rajshahi Natore highway. It is currently used by Lashkarpur Degree College but is in a poor state of repair. 
 
-</div>
+    </div>
 
 
 
@@ -110,36 +186,161 @@ Puthia Rajbari is a palace in Puthia Upazilla, Rajshahi in Bangladesh, built in 
     </a>
 
 
-      <div class="w3-row-padding w3-theme">
+    <div class="w3-row-padding w3-theme">
       <div class="w3-container w3-margin w3-half">
         <h3>The bank of the padma river</h3>
         <h4>I badh, T badh, Fultola</h4>
         <img class="e-im" src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Boat_Sailing_up_Padma_River_Bangladesh.jpg" alt="padma river"> 
       </div>
+    </div>
+
+
+    <br>
+    <hr>
+
+      <form action='/adCmnt' method='POST'>
+        <textarea class="w3-input w3-border" id="pst" name="dtpst" rows="8" cols="35" placeholder="Write a comment"></textarea>
+        <button class="w3-button w3-green" type="submit">Submit</button>
+      </form>
+        
+        <br>
+      <div id="cmnts">
+      </div>
+
       </div>
 
 
-      <br>
-<hr>
+    <script>
+    // Script to open and close sidebar
+    function w3_open() {
+      document.getElementById("mySidebar").style.display = "block";
+    }
 
-      <div>
-        <h3>Hardinge Bridge</h3>
-        <p>Hardinge Bridge is a steel railway truss bridge over the Padma River located at Ishwardi, Pabna and Bheramara, and Kushtia in Bangladesh. It is named after Lord Hardinge, who was the Viceroy of India from 1910 to 1916. The bridge is 1.8 km (1.1 mi) long. </p>
-        <img class="e-im" src="https://upload.wikimedia.org/wikipedia/commons/8/83/Hardinge_Bridge_11.jpg" alt="padma river"> 
-      </div>
+    function w3_close() {
+      document.getElementById("mySidebar").style.display = "none";
+    }
+    </script>
+      
 
+    <script>
+      myTable = document.getElementById('tcntn') ;
+    async function rendrList(container){
 
+      const dta =await fetch("/getFare")
+      const data=await dta.json() ;
 
-      <script>
-        // Script to open and close sidebar
-        function w3_open() {
-                  document.getElementById("mySidebar").style.display = "block";
-                }
-
-        function w3_close() {
-                  document.getElementById("mySidebar").style.display = "none";
-                }
+      headers=['From/To','From/To','Tk'] ;
+      container.innerHTML='' ;
+      printTable(data,headers,myTable);
+    }
+    rendrList(myTable) ;
+        
       </script>
+
+
+    <script>
+      
+function printTable(objs,headers,myTable){
+
+    let table = document.createElement('table');
+    table.setAttribute('class','w3-card-4 w3-table-all')
+
+    let headerRow = document.createElement('tr');
+    headerRow.setAttribute('class','w3-teal') ;
+    headers.forEach(headerText => {
+        let header = document.createElement('th');
+        let textNode = document.createTextNode(headerText);
+        header.appendChild(textNode);
+        headerRow.appendChild(header);
+    });
+    table.appendChild(headerRow);
+
+   objs.forEach(obj => {
+        let row = document.createElement('tr');
+        Object.values(obj).forEach(text => {
+            let cell = document.createElement('td');
+            let textNode = document.createTextNode(text);
+            cell.appendChild(textNode);
+            row.appendChild(cell);
+        })
+        table.appendChild(row);
+    });
+    myTable.appendChild(table);
+
+}
+    </script>
+
+    <script>
+    const form = document.getElementById('form') ;
+      const cntr = document.getElementById('contr') ;
+      const inp=document.createElement('input') ;
+      const inp2=document.createElement('input') ;
+      const inp3=document.createElement('input') ;
+    function addFare(){
+      // inp.setAttribute('type','text') ;
+      // inp2.setAttribute('type','text') ;
+      // inp3.setAttribute('type','text') ;
+      //
+      // cntr.appendChild(inp) ;
+      // cntr.appendChild(inp2) ;
+      // cntr.appendChild(inp3) ;
+      //
+      // const bttn = document.getElementById('cntr_button') ;
+      //   bttn.setAttribute('onclick','sbmt()') ;
+      //   bttn.innerHTML='Submit' ;
+        
+      form.setAttribute('style','block') ;
+      const nb= document.createElement('button') ;
+      nb.setAttribute('onclick','clr()') ;
+      nb.innerHTML="Clear this section" ;
+
+      cntr.appendChild(nb) ;
+
+    }
+      function sbmt(){
+      const frm=inp.value ;
+      const to=inp2.value ;
+      const fre=inp3.value ;
+        console.log(frm) ;
+
+      }
+      function clr(){
+      form.setAttribute('style','display:none') ;
+        cntr.innerHTML='' ;
+      }
+  // const gtel=document.getElementById('cntr_button').addEventListener("click",addFare,false) ;
+    </script>
+    <script>
+    async function cm(){
+      const cmntcnt=document.getElementById('cmnts') ;
+      const cmnt =await fetch('/getCmnts') ;
+      const cmntsv=await cmnt.json() ;
+      console.log(cmntsv) ;
+
+      cmntsv.forEach(obj => {
+        const dv=document.createElement('div') ;
+        dv.setAttribute('class','w3-section w3-container w3-panel w3-blue w3-card-4') ;
+        const hd=document.createElement('h3') ;
+        hd.innerHTML='Comments By: '+obj.name ;
+        // dv.innerHTML=obj.name ;
+        const hr= document.createElement('hr') ;
+        dv.appendChild(hd) ;
+        dv.appendChild(hr) ;
+
+        obj.pst.forEach(oobj=>{
+          const dvv=document.createElement('div')
+          dvv.setAttribute('class','w3-section ') ;
+          dvv.innerHTML='" '+oobj+' "' ;
+
+          dv.appendChild(dvv) ;
+
+        })
+        cmntcnt.appendChild(dv) ;
+      })
+    }
+      cm() ;
+    </script>
+
   </body>
 </html>
 

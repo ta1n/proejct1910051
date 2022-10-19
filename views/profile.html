@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Profile</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- <link href="css/style.css" rel="stylesheet"> -->
+  </head>
+  <body>
+
+    <!-- <h1>Welcome Back <%= foundUser.email %></h1> -->
+    <h1>welcome back</h1>
+
+    <input type="text" id="hdn" placeholder="Post Title" required> <br>
+    <textarea id="pst"  placeholder="Write your post here" required> </textarea>
+    <button id="btn">Submit</button>
+    <br>
+
+    <button id="btng">GET</button>
+
+
+    <h1> Posts </h1>
+    <div id='all_psts'>
+
+    </div>
+
+      <button ></button>
+
+      <br><div align='center'><form action="/logout" method="GET"><button type="submit">LOGOUT</button></form></div>
+
+  </body>
+  <script>
+  let post ;
+  function get_text(){
+    dthead =document.getElementById('hdn').value ;
+    dtpst = document.getElementById('pst').value ;
+    post={ dthead:dthead, dtpst:dtpst }
+  }
+  function snd(){
+    get_text()  ;
+    fetch('/adinfo',{
+      method: 'POST',
+      body: JSON.stringify(post),
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+      }})
+      .then((response) => response.json()).then((data) => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }
+
+
+
+
+  function gtinf(){
+    // fetch('/getinfo').then((response) => response.json())
+    //   .then((data) => console.log(data));
+    rendrPosts(prnt_div) ;
+  }
+  // function send_req(){
+  //   fetch('/addinfo',()=> {
+  //   method: 'POST', // or 'PUT'
+  //   headers: { 'Content-Type': 'application/json', },
+  //   body: JSON.stringify(post),
+  // }) .then((response) => response.json()).then((data) => {
+  //     console.log('Success:', data); }).catch((error) => {
+  //     console.error('Error:', error);
+  //   });
+  // }
+  </script>
+
+  <script>
+function printPosts(objs,container){
+
+  hdngs=objs.hdng ;
+  psts=objs.pst ;
+
+  for(let i = 0; i < hdngs.length; i++){
+    // console.log(hdngs[i]); console.log(psts[i]);
+    let hdr=document.createElement('h3') ;
+    hdr.append(hdngs[i]) ;
+    let pst=document.createElement('p') ;
+    pst.append(psts[i]) ;
+    container.appendChild(hdr) ;
+    container.appendChild(pst) ;
+
+    
+  } }
+
+const prnt_div=document.getElementById('all_psts') ;
+async function rendrPosts(container){
+
+  const dta =await fetch("/getinfo")
+  const data=await dta.json() ;
+  container.innerHTML='' ;
+
+  printPosts(data,container) ;
+
+  // headers=['From/To','From/To','Fare'] ;
+  // printTable(data,headers,myTable);
+
+}
+</script>
+
+    <!-- <script src="./prfl.js"> </script> -->
+  <script>
+  const el=document.getElementById('btn').addEventListener("click",snd,false) ;
+  const gtel=document.getElementById('btng').addEventListener("click",gtinf,false) ;
+  </script>
+
+
+
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Admin Profile</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="w3.css" rel="stylesheet">
+      <style>
+    .wd{
+      width:50% ;
+    }
+    .cntr{
+      display:flex ;
+      align-items:center ;
+      justify-content: center ;
+      /* align-content: space-around ; */
+      flex-wrap:wrap ;
+      row-gap: 30px ;
+      column-gap: 5px ;
+      padding:20px ;
+      margin:30px ;
+      flex-flow:column ;
+      
+    }
+      </style>
+  </head>
+  <body>
+
+    <br>
+      <form action='/logout' method='get' class="w3-display-topright">
+      <button class="w3-button w3-pale-blue w3-border-black">Logout</button>
+      </form>
+    <div class="cntr">
+      
+    <br>
+    <br>
+    <br>
+    <!-- <h1>Welcome Back <%= foundUser.email %></h1> -->
+      <div class="w3-container w3-teal w3-card-4" >
+    <h1>Welcome Admin !</h1>
+      </div>
+
+        <br>
+        <br>
+<div class="w3-card-4 w3-panel w3-pale-blue w3-border-left w3-border-blue">
+  <p>Now You can post anything in this website !</p>
+        </div>
+
+        <br>
+
+
+        <div class="w3-card-4 w3-border w3-border-blue w3-pale-blue w3-padding-large">
+          
+    <input class="w3-input w3-border" type="text" id="hdn" placeholder="Post Title" required> <br>
+    <textarea rows="10" cols="50" class="w3-input w3-border" id="pst"  placeholder="Post content" required> </textarea>
+    <button class="w3-section w3-button w3-border-black w3-teal w3-hover-white" id="btn">Submit</button>
+    <br>
+
+        </div>
+
+
+        <br>
+        <br>
+        <br>
+      <div class="w3-container w3-section w3-blue w3-card-4" >
+        
+    <h1>All Your Posts:</h1>
+      </div>
+        <br>
+    <button class="w3-button w3-border-blue w3-teal"id="btng">See</button>
+        <br>
+    <div class="w3-section" id='all_psts'>
+
+    </div>
+
+    </div>
+  </body>
+  <script>
+  let post ;
+  function get_text(){
+    dthead =document.getElementById('hdn').value ;
+    dtpst = document.getElementById('pst').value ;
+    post={ dthead:dthead, dtpst:dtpst }
+  }
+  function snd(){
+    get_text()  ;
+    fetch('/ad_adm_info',{
+      method: 'POST',
+      body: JSON.stringify(post),
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+      }})
+      .then((response) => response.json()).then((data) => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+    alert("Your post has been received") ;
+  }
+
+
+
+
+  function gtinf(){
+    // fetch('/getinfo').then((response) => response.json())
+    //   .then((data) => console.log(data));
+    rendrPosts(prnt_div) ;
+  }
+  // function send_req(){
+  //   fetch('/addinfo',()=> {
+  //   method: 'POST', // or 'PUT'
+  //   headers: { 'Content-Type': 'application/json', },
+  //   body: JSON.stringify(post),
+  // }) .then((response) => response.json()).then((data) => {
+  //     console.log('Success:', data); }).catch((error) => {
+  //     console.error('Error:', error);
+  //   });
+  // }
+  </script>
+
+  <script>
+function printPosts(objs,container){
+
+  hdngs=objs.hdng ;
+  psts=objs.pst ;
+
+  for(let i = 0; i < hdngs.length; i++){
+
+
+ let dv=document.createElement('div') ; dv.setAttribute('class','w3-card-4  w3-center') ;
+      dv.setAttribute('style','width:90%;') ;
+    let hedr = document.createElement('header') ; hedr.setAttribute('class','w3-container w3-blue') ;
+    let h = document.createElement('h3') ; 
+    hedr.appendChild(h) ;
+
+    let dv2=document.createElement('div') ;dv2.setAttribute('class','w3-container') ;
+    let p=document.createElement('p') ; 
+    dv2.appendChild(p) ;
+
+    dv.appendChild(hedr) ;
+    dv.appendChild(dv2) ;
+
+      h.innerHTML=hdngs[i] ;
+      p.innerHTML=psts[i] ;
+
+      prnt_div.appendChild(dv) ;
+
+      let br=document.createElement('br') ;  prnt_div.appendChild(br) ;
+      let br1=document.createElement('br') ; prnt_div.appendChild(br1) ;
+      let br2=document.createElement('br') ; prnt_div.appendChild(br2) ;
+      
+
+
+    // // console.log(hdngs[i]); console.log(psts[i]);
+    // let hdr=document.createElement('h3') ;
+    // hdr.append(hdngs[i]) ;
+    // let pst=document.createElement('p') ;
+    // pst.append(psts[i]) ;
+    // container.appendChild(hdr) ;
+    // container.appendChild(pst) ;
+
+    
+  } }
+
+const prnt_div=document.getElementById('all_psts') ;
+async function rendrPosts(container){
+
+  const dta =await fetch("/get_adm_info")
+  const data=await dta.json() ;
+  container.innerHTML='' ;
+
+  printPosts(data,container) ;
+
+  // headers=['From/To','From/To','Fare'] ;
+  // printTable(data,headers,myTable);
+
+}
+</script>
+
+    <!-- <script src="./prfl.js"> </script> -->
+  <script>
+  const el=document.getElementById('btn').addEventListener("click",snd,false) ;
+  const gtel=document.getElementById('btng').addEventListener("click",gtinf,false) ;
+  </script>
+
+
+
+</html>

@@ -3,38 +3,67 @@
   <head>
     <meta charset = "UTF-8">
     <title> My Form </title>
-    <link rel="stylesheet" href="sty.css">
+    <!-- <link rel="stylesheet" href="sty.css"> -->
+    <link rel="stylesheet" href="w3.css">
 
+
+      <style>
+    .wd{
+      width:50% ;
+    }
+    .cntr{
+      display:flex ;
+      align-items:center ;
+      justify-content: center ;
+      /* align-content: space-around ; */
+      flex-wrap:wrap ;
+      row-gap: 50px ;
+      column-gap: 5px ;
+      padding:20px ;
+      margin:30px ;
+      
+    }
+    body {
+  background-color: lightblue;
+}
+      </style>
 
   </head>
+
   <body >
+    <br>
+    <br>
+    <br>
+    <br> <br>
 
-    <div class="login-box">
+    <div class="w3-display-middle">
+      
+    <div class="w3-container w3-card-4">
       <form action="/adminregister" method="POST">
-        <h1>Register</h1>
-        <div class="textbox">
+        <h1>Admin Register</h1>
           <i class="fas fa-user"></i>
-          <input type ="text" id = 'usrname' name="username" placeholder="talha" required>
-        </div>
+          <input class="w3-input" type ="text" id = 'usrname' name="username" placeholder="talha" required>
 
 
-        <div class="textbox">
           <i class="fas fa-envelope"></i>
-          <input type ="email" id = 'email' name="email" placeholder="admin@gmail.com" required>
-        </div>
+          <input class="w3-input" type ="email" id = 'email' name="email" placeholder="admin@gmail.com" required>
 
-        <div class="textbox">
           <i class="fas fa-lock"></i>
-          <input type="password" id = "password" name="password" required>
-        </div>
+          <input class="w3-input" type="password" id = "password" name="password" placeholder="Password" required>
+          <br>
+          <br>
 
-        <button type ="reset" class="btn">Reset</button>
-        <button type ="submit" class="btn">Submit</button>
-        <button class="btn"><a id="mylink" href="./adminlogin.html">Admin login</a></button>
+        <button type ="reset" class="w3-button w3-white w3-border w3-border-blue w3-ripple">Reset</button>
+        <button type ="submit" class="w3-button w3-white w3-border w3-border-blue w3-ripple">Submit</button>
+        <button class="w3-button w3-white w3-border w3-border-blue w3-ripple"><a id="mylink" href="./adminlogin.html">Admin login</a></button>
+    <br> <br>
+    <br> 
+<!-- class="w3-button w3-white w3-border w3-border-blue w3-ripple -->
       </form>
     </div>
 
 
+    </div>
 
 
 

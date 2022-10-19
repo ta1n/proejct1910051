@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Rajshahi</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" href="style_sb.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/> -->
+
+
+  </head>
+  <body>
+  
+    <!-- <div class="wrapper zi"> -->
+    <!--   <div class="search-input zi"> -->
+    <!--     <a href="" target="_blank" hidden></a> -->
+    <!--     <input type="text" placeholder="Type to search.."> -->
+    <!--     <div class="autocom-box"> -->
+          <!-- here list are inserted from javascript -->
+    <!--     </div> -->
+    <!--     <div class="icon"><i class="fas fa-search"></i></div> -->
+    <!--   </div> -->
+    <!-- </div> -->
+
+
+      <!-- <form target="_blank" method="POST" action="/addFare" autocomplete="on"> -->
+
+      <form  action="/addFare" method="POST"  autocomplete="on">
+      <fieldset>
+      <input type="text"   id="from" name="from" placeholder="From/To">
+      <input type="text"   id="to" name="to" placeholder="From/To">
+      <input type="text"   id="fare" name="fare" placeholder="Fare">
+      <input type="submit" id="btn" value="SUBMIT">
+      </fieldset>
+      </form>
+
+
+    <div id='cntn'> </div>
+
+    <script src="./obtbl.js"> </script>
+
+    <script>
+      myTable = document.getElementById('cntn') ;
+    async function rendrList(container){
+
+      const dta =await fetch("/getFare")
+      const data=await dta.json() ;
+
+      headers=['From/To','From/To','Fare'] ;
+      container.innerHTML='' ;
+      printTable(data,headers,myTable);
+    }
+    rendrList(myTable) ;
+    </script>
+
+
+
+  </body>
+</html>
